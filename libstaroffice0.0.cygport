@@ -1,0 +1,28 @@
+NAME="libstaroffice0.0"
+VERSION=0.0.1
+RELEASE=1
+CATEGORY="Libs"
+SUMMARY="StarOffice document import filter library"
+DESCRIPTION="Libstaroffice is library providing ability to interpret and import
+old StarOffice content into various applications."
+HOMEPAGE="https://github.com/fosnola/libstaroffice"
+SRC_URI="${HOMEPAGE}/releases/download/${VERSION}/libstaroffice-${VERSION}.tar.xz"
+SRC_DIR="libstaroffice-${VERSION}"
+PATCH_URI="
+	0.0.1-vpath.patch
+"
+
+PKG_NAMES="libstaroffice-tools ${NAME}_0 ${NAME}-devel ${NAME}-doc"
+libstaroffice_tools_CATEGORY="Graphics"
+libstaroffice_tools_SUMMARY="MS Publisher file converters"
+libstaroffice_tools_CONTENTS="usr/bin/*.exe"
+libstaroffice0_0_0_SUMMARY="${SUMMARY} (runtime)"
+libstaroffice0_0_0_CONTENTS="--exclude=html usr/bin/*-0.0-0.dll usr/share/doc/"
+libstaroffice0_0_devel_SUMMARY="${SUMMARY} (development)"
+libstaroffice0_0_devel_CONTENTS="usr/include/ usr/lib/"
+libstaroffice0_0_doc_SUMMARY="${SUMMARY} (API documentation)"
+libstaroffice0_0_doc_CONTENTS="usr/share/doc/${NAME}/html/"
+
+CYGCONF_ARGS="--disable-werror --with-sharedptr=c++11"
+
+KEEP_LA_FILES="none"
